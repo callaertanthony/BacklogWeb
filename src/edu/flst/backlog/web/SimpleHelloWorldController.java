@@ -2,16 +2,23 @@ package edu.flst.backlog.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
+import edu.flst.backlog.bo.Component;
 import edu.flst.backlog.service.BacklogService;
+//import edu.flst.todo.service.Todo;
 
 @Controller
 public class SimpleHelloWorldController {
@@ -25,7 +32,6 @@ public class SimpleHelloWorldController {
 		return "hello";
 	}
 	
-	
 	@RequestMapping(value="/hello/{you}.do", method=RequestMethod.GET)
 	public ModelAndView sayHelloYou(@PathVariable String you, @RequestParam(required=false) String msg){
 		ModelAndView mNv = new ModelAndView("helloYou");
@@ -34,4 +40,9 @@ public class SimpleHelloWorldController {
 		
 		return mNv;
 	}
+	
+	@RequestMapping(value = "/formComponent.do", method = RequestMethod.GET)
+	   public ModelAndView formComponent() {
+	      return new ModelAndView("formComponent", "command", new Component());
+	   }
 }
