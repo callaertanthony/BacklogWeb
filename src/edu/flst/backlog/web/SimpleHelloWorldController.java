@@ -40,9 +40,4 @@ public class SimpleHelloWorldController {
 		
 		return mNv;
 	}
-	
-	@RequestMapping(value = "/formComponent.do", method = RequestMethod.GET)
-	   public ModelAndView formComponent() {
-	      return new ModelAndView("formComponent", "command", new Component());
-	   }
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@taglib uri="/WEB-INF/c.tld" prefix="c"%>
     <%@ taglib prefix="fmt" uri="/WEB-INF/fmt.tld" %>
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
     
@@ -16,7 +17,12 @@
 		<form:label for="componentLabel" path="">Label:</form:label>
 		<form:input type="text" name="componentLabel" id="componentLabel" path="label"/></br>
 		<form:label for="componentOwner" path="">Owner:</form:label>
-		<form:input type="text" name="componentOwner" id="componentOwner" path="owner"/></br>
+		<form:select name="componentOwner" id="componentOwner" path="owner">
+			<c:forEach items="${users}" var="user">
+			<form:option value="${user.id}">${user.firstName} ${user.lastName}</form:option>
+			</c:forEach>
+		</form:select>
+		<br/>
 		<form:label for="componentDescription" path="">Description:</form:label>
 		<form:input type="text" name="componentDescription" id="componentDescription" path="description"/></br>
 		<input type="submit" value="Submit"/></br>
