@@ -42,7 +42,7 @@ public class ComponentController {
 		
 		backlogService.createUser(zUser);
 		Collection<User> users = backlogService.listUsers();
-		ModelAndView ModelAndView = new ModelAndView("formComponent", "command", new Component());
+		ModelAndView ModelAndView = new ModelAndView("component/formComponent", "command", new Component());
 		ModelAndView.addObject("users", users);
 		return ModelAndView;
 	}
@@ -60,7 +60,7 @@ public class ComponentController {
 		zComponent.setOwner(zUser);
 		backlogService.createComponent(zComponent);
 	
-		ModelAndView mav = new ModelAndView("addComponent", "component", zComponent);
+		ModelAndView mav = new ModelAndView("component/addComponent", "component", zComponent);
 		return mav;
 	}
 }
