@@ -11,19 +11,19 @@
 	<h2>Component added.</h2>
 	
 	<table>
-    <tr>
-        <td>Label: </td>
-        <td>${component.label}</td>
-    </tr>
-    <tr>
-        <td>Owner: </td>
-        <td>${component.owner.firstName} ${component.owner.lastName}</td>
-        <td>(${component.owner.job})</td>
-    </tr>
-    <tr>
-        <td>Description: </td>
-        <td>${component.description}</td>
-    </tr>
-</table>  
+	    <tr>
+	        <td>Label: </td>
+	        <td>${component.label}</td>
+	    </tr>
+	    <tr>
+	        <td>Owner: </td>
+	        <td>${component.owner.firstName} ${component.owner.lastName}</td>
+	        <td>(${component.owner.job})</td>
+	    </tr>
+	    <tr>
+	        <td>Description: </td>
+	        <td>${component.description}</td>
+	    </tr>
+	</table>  
 </body>
 </html>

@@ -6,18 +6,12 @@ import java.util.Collection;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import edu.flst.backlog.bo.Component;
 import edu.flst.backlog.bo.Job;
@@ -41,16 +35,15 @@ public class ComponentController {
 		zUser.setJob(Job.ANALYST);
 		
 		backlogService.createUser(zUser);
-		Collection<User> users = backlogService.listUsers();
+		Collection<User> cUsers = backlogService.listUsers();
 		ModelAndView ModelAndView = new ModelAndView("component/formComponent", "command", new Component());
-		ModelAndView.addObject("users", users);
+		ModelAndView.addObject("users", cUsers);
 		return ModelAndView;
 	}
 	
 	@RequestMapping(value = "/add.do", method = RequestMethod.POST)
-	public ModelAndView addComponent(HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView addComponent(HttpServletRequest request)
 	throws ServletException, IOException {
-		response.setContentType("text/html");
 		Component zComponent = new Component();
 		User zUser = new User();
 		
