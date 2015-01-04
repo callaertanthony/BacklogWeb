@@ -19,7 +19,7 @@
 		<form:label for="componentOwner" path="">Owner:</form:label>
 		<form:select name="componentOwner" id="componentOwner" path="owner">
 			<c:forEach items="${users}" var="user">
-			<form:option value="${user.id}">${user.firstName} ${user.lastName}</form:option>
+			<form:option value='${user.id}'>${user.firstName} ${user.id} ${user.lastName}</form:option>
 			</c:forEach>
 		</form:select>
 		<br/>

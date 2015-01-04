@@ -1,6 +1,11 @@
 package edu.flst.backlog.web;
 
+import java.io.IOException;
 import java.util.Collection;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,6 +26,7 @@ public class ComponentController {
 	public ModelAndView formComponent() {
 		
 		User zUser = new User();
+		zUser.setId(123);
 		zUser.setFirstName("TomTom");
 		zUser.setLastName("De Puniet");
 		zUser.setJob(Job.ANALYST);
@@ -34,13 +40,32 @@ public class ComponentController {
 	}
 	
 	@RequestMapping(value = "/addComponent.do", method = RequestMethod.POST)
-	   public String addController(@ModelAttribute("component")Component component, 
-	   ModelMap model) {
-			
-	      model.addAttribute("componentLabel", component.getLabel());
-//	      model.addAttribute("componentOwner", component.getOwner());
-	      model.addAttribute("componentDescription", component.getDescription());
-	      
-	      return "formComponent";
-	   }
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+	throws ServletException, IOException {
+		response.setContentType("text/html");
+		Component zComponent = new Component();
+		User zUser = new User();
+		BacklogServiceImpl backlog_service = new BacklogServiceImpl();
+		
+		zUser = backlog_service.getUser(Integer.parseInt(request.getParameter("owner")));
+		zComponent.setLabel(request.getParameter("label"));
+		zComponent.setDescription(request.getParameter("description"));
+		zComponent.setOwner(zUser);
+		backlog_service.createComponent(zComponent);
+		
+		//TODO DEBUG/TEST
+		Component zComponentTest = new Component();
+		zComponentTest = backlog_service.getComponent(0);
+		System.out.println("Res: " + zComponentTest.getLabel() + " / " + zComponentTest.getDescription());
+	}
+	
+//	@RequestMapping(value = "/addComponent.do", method = RequestMethod.POST)
+//	   public String addController(@ModelAttribute("component")Component component, 
+//	   ModelMap model) {
+//	      model.addAttribute("componentLabel", component.getLabel());
+////	      model.addAttribute("componentOwner", component.getOwner());
+//	      model.addAttribute("componentDescription", component.getDescription());
+//	      
+//	      return "addComponent";
+//	   }
 }
