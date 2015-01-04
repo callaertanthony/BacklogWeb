@@ -22,6 +22,7 @@
 		z-index: 1;
 	}
 	#navbar > a { color: white; }
+	#navbar > a:last-child { padding-right: 20px;}
 	#backlog-info{
 		background-color: #C3D9FF;
 		margin-bottom: 10px;
