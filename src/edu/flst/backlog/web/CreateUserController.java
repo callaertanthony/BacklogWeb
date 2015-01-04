@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.flst.backlog.bo.Job;
 import edu.flst.backlog.bo.User;
 
 import java.io.*;
@@ -27,35 +28,43 @@ import java.util.*;
 
 @Controller
 public class CreateUserController extends HttpServlet {
-
 	
 	@RequestMapping(value="userForm.do", method=RequestMethod.GET)
 	public ModelAndView sayUserForm(HttpServletRequest req, HttpServletResponse resp){
+		
+		 Vector vecteurJob=new Vector();	    
+		for(Job job : Job.values()){
+			 vecteurJob.addElement(job);
+		}
+//		ModelAndView ModelAndView = new ModelAndView("userForm", "command", new Job());
+//		ModelAndView.addObject("job", Job);
+	      
+		
 		ModelAndView mNv = new ModelAndView("userForm");
 		return mNv;
-	}
-//	
+	}	
+	
 	 @RequestMapping(value = "CreateUser.do", method = RequestMethod.POST)
-//	   public String AfficheUser(@ModelAttribute("SpringWeb")User user, 
-//	   ModelMap model) {
-//	      model.addAttribute("name", user.setFirstName();
-//	      model.addAttribute("prenom", user.setLastName(lastName);
-//	      
-//	      return "result";
-//	   }
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 				response.setContentType("text/html");
 				PrintWriter out = response.getWriter();
 				out.println(
 				"<HTML>\n<BODY>\n" +
-						"<H1>Recapitulatif des informations</H1>\n" +
+						"<H1>Recapitulatif des informations à enregistrer</H1>\n" +
 							"<UL>\n" +"  <LI>Nom: "
 								+ request.getParameter("nom") + "\n" +"  <LI>Prenom: "
 								+ request.getParameter("prenom") + "\n"
 								+"</UL>\n" +				
 				"</BODY></HTML>");  
-}
+			 
+				User instance_user= new User();
+				instance_user.setFirstName(request.getParameter("nom"));
+				instance_user.setLastName(request.getParameter("prenom"));
+				
+				
+				
+	}
 }
 
   
