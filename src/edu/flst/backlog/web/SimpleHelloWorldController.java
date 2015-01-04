@@ -18,7 +18,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import edu.flst.backlog.bo.Component;
 import edu.flst.backlog.service.BacklogService;
-//import edu.flst.todo.service.Todo;
 
 @Controller
 public class SimpleHelloWorldController {
