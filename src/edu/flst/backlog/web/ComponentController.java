@@ -1,22 +1,20 @@
 package edu.flst.backlog.web;
 
-import java.io.IOException;
-import java.util.Collection;
+import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.flst.backlog.bo.Component;
-import edu.flst.backlog.bo.Job;
 import edu.flst.backlog.bo.User;
-import edu.flst.backlog.service.*;
+import edu.flst.backlog.service.BacklogServiceImpl;
 
 
 @Controller
@@ -25,45 +23,27 @@ public class ComponentController {
 	
 	@Autowired private BacklogServiceImpl backlogService;
 
+	@ModelAttribute("userCache")
+	public List<User> getUsers(){
+		return backlogService.listUsers();
+	}
+	
 	@RequestMapping(value = "/new.do", method = RequestMethod.GET)
 	public ModelAndView formComponent() {
 		
-		for(Integer x = 0; x < 10; x++) {
-			User zUser = new User();
-			zUser.setFirstName("User");
-			zUser.setLastName(x.toString());
-			if ( (x % 2) == 0)
-				zUser.setJob(Job.ANALYST);
-			else
-				zUser.setJob(Job.DEVELOPPER);
-			backlogService.createUser(zUser);
-		}
-		User zUser = new User();
-		zUser.setId(123);
-		zUser.setFirstName("Tom");
-		zUser.setLastName("De Puniet");
-		zUser.setJob(Job.ANALYST);
+		ModelAndView ModelAndView = new ModelAndView("component/componentForm", "command", new Component());
+		ModelAndView.addObject("users", backlogService.listUsers());
 		
-		backlogService.createUser(zUser);
-		Collection<User> cUsers = backlogService.listUsers();
-		ModelAndView ModelAndView = new ModelAndView("component/formComponent", "command", new Component());
-		ModelAndView.addObject("users", cUsers);
 		return ModelAndView;
 	}
 	
 	@RequestMapping(value = "/add.do", method = RequestMethod.POST)
-	public ModelAndView addComponent(HttpServletRequest request)
-	throws ServletException, IOException {
-		Component zComponent = new Component();
-		User zUser = new User();
+	public ModelAndView addComponent(@ModelAttribute @Valid Component component, BindingResult result){
+
+		component.setOwner(backlogService.getUser(component.getOwner().getId()));
 		
-		zUser = backlogService.getUser(Integer.parseInt(request.getParameter("owner")));
-		zComponent.setLabel(request.getParameter("label"));
-		zComponent.setDescription(request.getParameter("description"));
-		zComponent.setOwner(zUser);
-		backlogService.createComponent(zComponent);
-	
-		ModelAndView mav = new ModelAndView("component/addComponent", "component", zComponent);
-		return mav;
+		Component newComponent = backlogService.createComponent(component);
+		
+		return new ModelAndView("component/componentView", "component", newComponent);
 	}
 }

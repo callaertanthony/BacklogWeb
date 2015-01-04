@@ -1,3 +1,0 @@
-
-HELLO ${model}<br/>
-${message}

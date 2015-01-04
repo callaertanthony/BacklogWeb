@@ -8,20 +8,23 @@
 </head>
 <body>
 	<h1>User</h1>
-	<h2>User added.</h2>
 	
 	<table>
+	<tr>
+        <td>Id : </td>
+        <td>${user.id}</td>
+    </tr>
     <tr>
         <td>Name : </td>
-        <td>${addUser.lastName}</td>
+        <td>${user.lastName}</td>
     </tr>
     <tr>
         <td>Firstname: </td>
-        <td>${addUser.firstName}</td>
+        <td>${user.firstName}</td>
     </tr>
     <tr>
         <td>Job: </td>
-        <td>${addUser.job}</td>
+        <td>${user.job}</td>
     </tr>
 </table>  
 </body>
