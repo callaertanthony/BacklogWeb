@@ -30,18 +30,20 @@ import java.util.*;
 public class CreateUserController extends HttpServlet {
 	
 	@RequestMapping(value="userForm.do", method=RequestMethod.GET)
-	public ModelAndView sayUserForm(HttpServletRequest req, HttpServletResponse resp){
-		
-		 Vector vecteurJob=new Vector();	    
+	public ModelAndView userForm(){
+
+		Vector<Job> vecteurJob=new Vector();	    
 		for(Job job : Job.values()){
 			 vecteurJob.addElement(job);
 		}
-//		ModelAndView ModelAndView = new ModelAndView("userForm", "command", new Job());
-//		ModelAndView.addObject("job", Job);
-	      
-		
-		ModelAndView mNv = new ModelAndView("userForm");
-		return mNv;
+		//Affichage des job
+        for(int i=0; i<vecteurJob.size(); i++)
+        {
+        	System.out.println (i+"=>"+vecteurJob.get(i));
+        }
+		ModelAndView ModelAndView = new ModelAndView();
+		ModelAndView.addObject("vecteurJob", vecteurJob);
+		return ModelAndView;
 	}	
 	
 	 @RequestMapping(value = "CreateUser.do", method = RequestMethod.POST)
