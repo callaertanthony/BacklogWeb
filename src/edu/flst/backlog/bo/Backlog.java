@@ -53,7 +53,6 @@ public class Backlog implements Serializable {
 		return owner;
 	}
 
-
 	public void setOwner(User owner) {
 		this.owner = owner;
 	}
