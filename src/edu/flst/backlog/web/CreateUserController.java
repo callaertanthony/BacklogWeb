@@ -29,43 +29,37 @@ import java.util.*;
 @Controller
 public class CreateUserController extends HttpServlet {
 	
-	@RequestMapping(value="userForm.do", method=RequestMethod.GET)
+	@RequestMapping(value="formUser.do", method=RequestMethod.GET)
 	public ModelAndView userForm(){
-
-		Vector<Job> vecteurJob=new Vector();	    
+		
+		//envoie des job pour la liste déroulante
+		ArrayList <Job> jobList = new ArrayList<Job>();
 		for(Job job : Job.values()){
-			 vecteurJob.addElement(job);
+			 jobList.add(job);
 		}
-		//Affichage des job
-        for(int i=0; i<vecteurJob.size(); i++)
-        {
-        	System.out.println (i+"=>"+vecteurJob.get(i));
-        }
 		ModelAndView ModelAndView = new ModelAndView();
-		ModelAndView.addObject("vecteurJob", vecteurJob);
+		ModelAndView.addObject("jobList", jobList);
 		return ModelAndView;
 	}	
 	
-	 @RequestMapping(value = "CreateUser.do", method = RequestMethod.POST)
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping(value = "CreateUser.do", method = RequestMethod.POST)
+	public ModelAndView addUser(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-				response.setContentType("text/html");
-				PrintWriter out = response.getWriter();
-				out.println(
-				"<HTML>\n<BODY>\n" +
-						"<H1>Recapitulatif des informations à enregistrer</H1>\n" +
-							"<UL>\n" +"  <LI>Nom: "
-								+ request.getParameter("nom") + "\n" +"  <LI>Prenom: "
-								+ request.getParameter("prenom") + "\n"
-								+"</UL>\n" +				
-				"</BODY></HTML>");  
-			 
+		
+				//création du user
 				User instance_user= new User();
-				instance_user.setFirstName(request.getParameter("nom"));
-				instance_user.setLastName(request.getParameter("prenom"));
+				instance_user.setFirstName(request.getParameter("Lastname"));
+				instance_user.setLastName(request.getParameter("Firstname"));	 
+				Job setterjob;
+				for(Job job : Job.values()){
+				    if(job.toString().equals(request.getParameter("job"))){
+				        setterjob=job;
+				        instance_user.setJob(setterjob); 
+				    }
+				}
 				
-				
-				
+				ModelAndView MnV = new ModelAndView("addUser", "addUser", instance_user);
+				return MnV;
 	}
 }
 
