@@ -23,11 +23,21 @@ import edu.flst.backlog.service.*;
 @RequestMapping(value="/component")
 public class ComponentController {
 	
-	@Autowired private BacklogService backlogService;
+	@Autowired private BacklogServiceImpl backlogService;
 
 	@RequestMapping(value = "/new.do", method = RequestMethod.GET)
 	public ModelAndView formComponent() {
 		
+		for(Integer x = 0; x < 10; x++) {
+			User zUser = new User();
+			zUser.setFirstName("User");
+			zUser.setLastName(x.toString());
+			if ( (x % 2) == 0)
+				zUser.setJob(Job.ANALYST);
+			else
+				zUser.setJob(Job.DEVELOPPER);
+			backlogService.createUser(zUser);
+		}
 		User zUser = new User();
 		zUser.setId(123);
 		zUser.setFirstName("Tom");

@@ -25,12 +25,6 @@
 <title>BackLog</title>
 </head>
 <body>
-																						<!-- TODO 	
-																							Show:
-																							 - Description
-																							 - Owner
-																							 - All the stories (list)
-																						-->	
 	<h1>Backlog</h1>
 	<h2>Informations:</h2>
 	<div id="backlog-info">
@@ -43,12 +37,12 @@
 	</div>
 	<div id="backlog-stories">
 		<c:forEach items="${stories}" var="story">
-			Label: ${story.label}</br>
-			Comment: ${story.comment}</br>
-			Created: ${story.createdDate}</br>
-			Modified: ${story.modifiedDate}</br>
-			User: ${story.user.firstName} ${story.user.lastName}</br>
-			Status: ${story.status}</br>
+			Label: ${story.label}<br>
+			Comment: ${story.comment}<br>
+			Created: ${story.createdDate}<br>
+			Modified: ${story.modifiedDate}<br>
+			User: ${story.user.firstName} ${story.user.lastName}<br>
+			Status: ${story.status}<br>
 			Component: ${story.component.label} ${story.component.description} (${story.component.owner.firstName} ${story.component.owner.lastName})</br>
 		</c:forEach>
 	</div>
