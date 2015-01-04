@@ -12,21 +12,22 @@
 </head>
 <body>
 	<h1>Component</h1>
-	<form:form name="formComponent" action="addComponent.do">
-		<h2>Create a component</h2>
+	<h2>Create a component</h2>
+	
+	<form:form name="formComponent" action="add.do">
 		<form:label for="componentLabel" path="">Label:</form:label>
-		<form:input type="text" name="componentLabel" id="componentLabel" path="label"/></br>
+		<form:input type="text" id="componentLabel" path="label"/></br>
 		<form:label for="componentOwner" path="">Owner:</form:label>
-		<form:select name="componentOwner" id="componentOwner" path="owner">
+		<form:select id="componentOwner" path="owner">
 			<c:forEach items="${users}" var="user">
-			<form:option value='${user.id}'>${user.firstName} ${user.lastName}</form:option>
+				<form:option value='${user.id}'>${user.firstName} ${user.lastName}</form:option>
 			</c:forEach>
 		</form:select>
 		<br/>
 		<form:label for="componentDescription" path="">Description:</form:label>
-		<form:input type="text" name="componentDescription" id="componentDescription" path="description"/></br>
-		<input type="submit" value="Submit"/></br>
+		<form:input type="text" id="componentDescription" path="description"/></br>
 		
+		<input type="submit" value="Submit"/></br>	
 	</form:form>
 </body>
 </html>
