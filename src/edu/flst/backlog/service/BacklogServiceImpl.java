@@ -81,7 +81,7 @@ public class BacklogServiceImpl implements BacklogService {
 				return user;
 			}
 		}
-		
+
 		return null;
 	}
 
