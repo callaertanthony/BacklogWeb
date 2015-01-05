@@ -45,14 +45,9 @@
 <title>BackLog</title>
 </head>
 <body>
-	<div id="navbar">
-		<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-		<a href="${contextPath}/component/new.do">Create Component</a>
-		 /  
-		<a href="${contextPath}/user/new.do">Create User</a>
-		 / 
-		<a href="${contextPath}/story/new.do">Create Story</a>
-	</div>
+	<!-- Include top navbar for navigation -->
+	<%@ include file="/WEB-INF/jsp/navbar.jsp" %>
+	
 	<h1 class="title">Backlog</h1>
 	<h2>Informations:</h2>
 	<div id="backlog-info">

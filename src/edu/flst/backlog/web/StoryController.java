@@ -29,7 +29,7 @@ public class StoryController {
 
 	@Autowired private BacklogServiceImpl backlogService;
 	
-	@RequestMapping(value="{id}.do", method=RequestMethod.GET)
+	@RequestMapping(value="/{id}.do", method=RequestMethod.GET)
 	public ModelAndView detail(@PathVariable int id){
 		Story zStory = backlogService.getStory(id);
 		return new ModelAndView("story/detail.do", "story", zStory);
