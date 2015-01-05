@@ -13,11 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.flst.backlog.bo.Backlog;
-import edu.flst.backlog.bo.Component;
-import edu.flst.backlog.bo.Job;
-import edu.flst.backlog.bo.Status;
 import edu.flst.backlog.bo.Story;
-import edu.flst.backlog.bo.User;
 import edu.flst.backlog.service.BacklogServiceImpl;
 
 @Controller
