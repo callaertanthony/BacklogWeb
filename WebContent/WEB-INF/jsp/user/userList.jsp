@@ -14,26 +14,19 @@
 	<!-- Include top navbar for navigation -->
 	<%@ include file="/WEB-INF/jsp/navbar.jsp" %>
 	<div class="center-data">
-	<h1>User</h1>
-	<h2>User ${user.firstName} ${user.lastName} added.</h2>
+		<h1>User</h1>
+		<h2>User list</h2>
 		<table>
-			<tr>
-		        <td>Id : </td>
-		        <td>${user.id}</td>
-		    </tr>
-		    <tr>
-		        <td>Name : </td>
-		        <td>${user.lastName}</td>
-		    </tr>
-		    <tr>
-		        <td>Firstname: </td>
-		        <td>${user.firstName}</td>
-		    </tr>
-		    <tr>
-		        <td>Job: </td>
-		        <td>${user.job}</td>
-		    </tr>
-		</table>
-	</div>  
+			<c:forEach items="${users}" var="user">
+				<tr>
+			        <td>${user.firstName} ${user.lastName}</td>
+			        <td>${user.job}</td>
+			        <td><a href="<c:url value="edit/${user.id }.do"/>">edit</a></td>
+			</c:forEach>
+	    </table>
+				
+		
+		
+	</div>
 </body>
 </html>

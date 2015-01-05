@@ -1,5 +1,7 @@
 package edu.flst.backlog.web;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,7 +27,16 @@ public class UserController {
 		modelAndView.addObject("jobs", Job.values());
 		
 		return modelAndView;
-	}	
+	}
+	
+	@RequestMapping(value="/list.do", method=RequestMethod.GET)
+	public ModelAndView listUsers(){
+		Collection<User> cUser= backlogService.listUsers();
+		ModelAndView modelAndView = new ModelAndView("user/userList", "command", new User());
+		modelAndView.addObject("users", cUser);
+		
+		return modelAndView;
+	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView formUser(@ModelAttribute User user){
