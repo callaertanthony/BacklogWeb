@@ -19,7 +19,7 @@
 	<div class="center-data">
 		<h1>Backlog</h1>
 		
-		<form:form action="updateBacklog.do" name="formBacklog" commandName="backlog">
+		<form:form name="formBacklog" commandName="backlog">
 	
 			<form:label for="backlogOwner" path="">Owner:</form:label>
 			<form:select id="backlogOwner" path="owner.id">

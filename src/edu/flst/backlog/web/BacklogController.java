@@ -44,7 +44,7 @@ public class BacklogController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/updateBacklog.do", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView formBackLog(@Valid @ModelAttribute Backlog backlog, BindingResult result){
 		if(result.hasErrors()){
 			ModelAndView modelAndView = new ModelAndView("backlog/backlogView", "backlog", backlog);
