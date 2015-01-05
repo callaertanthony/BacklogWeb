@@ -1,6 +1,8 @@
 package edu.flst.backlog.web;
 
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,7 +32,7 @@ public class ComponentController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView formComponent(@ModelAttribute Component component){
+	public ModelAndView formComponent(@Valid @ModelAttribute Component component){
 
 		Component newComponent = new Component();
 		if(component.getId() > 0){
