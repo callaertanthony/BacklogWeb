@@ -1,4 +1,5 @@
 body {
+	margin-top: 60px !important;
 	background: 
 		background-color: #fff; 
 		background-image: 
@@ -64,6 +65,7 @@ div.center-data > h1, div.center-data > h2 { text-align: center; }
 	border-radius: 6px;
 	background: #f0f0f0;
 }
+#story-detail { padding: 30px; }
 div.story > a{
 	display: block;
     height: 100%;

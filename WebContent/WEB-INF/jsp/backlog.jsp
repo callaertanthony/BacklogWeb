@@ -33,8 +33,7 @@
 				<a href="<c:url value="story/${story.id}.do"/>">
 					<h3>${story.label}<br></h3>
 					<b>Comment:</b> ${story.comment}<br>
-					<b>Created:</b><br/>
-					${story.createdDate}<br>
+					<b>Created:</b>	${story.createdDate}<br>
 					<b>User:</b> ${story.user.firstName} ${story.user.lastName}<br>
 					<b>Status:</b> ${story.status}<br>
 				</a>

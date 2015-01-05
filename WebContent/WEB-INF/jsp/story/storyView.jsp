@@ -8,13 +8,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" type="text/css" media="screen" href="${contextPath}/css/style.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 <title>Story view</title>
 </head>
 <body>
 	<!-- Include top navbar for navigation -->
 	<%@ include file="/WEB-INF/jsp/navbar.jsp" %>
 	
-	<div class="center-data">
+	<div class="center-data thumbnail" id="story-detail">
 		<h1>Story</h1>
 		<h2>Story ${story.label} added.</h2>
 		<table>
