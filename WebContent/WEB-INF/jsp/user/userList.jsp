@@ -22,6 +22,7 @@
 			        <td>${user.firstName} ${user.lastName}</td>
 			        <td>${user.job}</td>
 			        <td><a href="<c:url value="edit/${user.id }.do"/>">edit</a></td>
+			        <td><a href="<c:url value="remove/${user.id }.do"/>">remove</a></td>
 			</c:forEach>
 	    </table>
 				

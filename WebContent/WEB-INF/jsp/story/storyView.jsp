@@ -54,6 +54,8 @@
 		<div style="text-align:center;">
 		<br/>
 			<a href="<c:url value="/story/edit/${story.id }.do"/>">(edit this story)</a>
+			- 
+			<a href="<c:url value="/story/remove/${story.id }.do"/>">(remove this story)</a>
 		</div>
 	</div>
 </body>

@@ -22,6 +22,7 @@
 			        <td>${component.label}</td>
 			        <td>${component.owner.firstName} ${component.owner.lastName}</td>
 			        <td><a href="<c:url value="edit/${component.id }.do"/>">edit</a></td>
+			        <td><a href="<c:url value="remove/${component.id }.do"/>">remove</a></td>
 			</c:forEach>
 	    </table>
 				
