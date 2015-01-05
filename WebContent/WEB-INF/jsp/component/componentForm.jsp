@@ -15,12 +15,14 @@
 <body>
 	<!-- Include top navbar for navigation -->
 	<%@ include file="/WEB-INF/jsp/navbar.jsp" %>
-
+	
 	<div class="center-data">
 		<h1>Component</h1>
 		<h2>Create a component</h2>
 		
-		<form:form name="formComponent" action="add.do">
+		<form:form name="formComponent">
+			<form:hidden path="id" value="${command.id > 0 ? command.id : -1 }"/>
+		
 			<form:label for="componentLabel" path="">Label:</form:label>
 			<form:input type="text" id="componentLabel" path="label" />
 			<br />

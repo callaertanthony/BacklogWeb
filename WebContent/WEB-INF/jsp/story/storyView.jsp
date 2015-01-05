@@ -14,7 +14,6 @@
 <body>
 	<!-- Include top navbar for navigation -->
 	<%@ include file="/WEB-INF/jsp/navbar.jsp" %>
-	
 	<div class="center-data thumbnail" id="story-detail">
 		<h1>Story</h1>
 		<h2>Story ${story.label} added.</h2>

@@ -1,4 +1,3 @@
-<%@taglib prefix="c" uri="/WEB-INF/c.tld" %> 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <div id="navbar">
 	<div id="navbar-home">

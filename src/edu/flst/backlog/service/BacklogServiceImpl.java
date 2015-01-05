@@ -17,9 +17,9 @@ public class BacklogServiceImpl implements BacklogService {
 	private List<Component> components = new ArrayList<Component>();
 	private Backlog baclklog = new Backlog();
 	
-	private static int idUser = 0;
-	private static int idComponent = 0;
-	private static int idStory = 0;
+	private static int idUser = 1;
+	private static int idComponent = 1;
+	private static int idStory = 1;
 
 	@Override
 	public Component createComponent(Component component) {

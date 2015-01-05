@@ -17,7 +17,9 @@
 		<h1>User</h1>
 		<h2>Create an user</h2>
 		
-		<form:form name="UserForm" method="POST" action="add.do">
+		<form:form name="UserForm">
+			<form:hidden path="id" value="${command.id > 0 ? command.id : -1 }"/>
+		
 			<form:label for="userFirstName" path="">First name:</form:label>
 			<form:input path="firstName" id="userFirstName"/><br/>
 			
