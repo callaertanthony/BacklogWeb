@@ -20,11 +20,12 @@
 		<h1>Component</h1>
 		<h2>Create a component</h2>
 		
-		<form:form name="formComponent">
+		<form:form name="formComponent" commandName="component">
 			<form:hidden path="id" value="${command.id > 0 ? command.id : -1 }"/>
 		
 			<form:label for="componentLabel" path="">Label:</form:label>
 			<form:input type="text" id="componentLabel" path="label" />
+			<form:errors path="label"></form:errors>
 			<br />
 	
 			<form:label for="componentOwner" path="">Owner:</form:label>
@@ -36,6 +37,7 @@
 	
 			<form:label for="componentDescription" path="">Description:</form:label>
 			<form:input type="text" id="componentDescription" path="description" />
+			<form:errors path="description"></form:errors>
 			<br />
 	
 			<input type="submit" value="Submit" />

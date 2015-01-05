@@ -19,15 +19,17 @@
 		<h1>Story</h1>
 		<h2>Create a story</h2>
 
-		<form:form method="post">
-			<form:hidden path="id" value="${command.id > 0 ? command.id : -1 }" />
+		<form:form method="post" commandName="story">
+			<form:hidden path="id" value="${story.id > 0 ? story.id : -1 }" />
 
 			<form:label path="" for="labelId">Label :</form:label>
 			<form:input path="label" id="labelId" />
+			<form:errors path="label"></form:errors>
 			<br />
 
 			<form:label path="" for="comentId">Comment :</form:label>
 			<form:input path="comment" />
+			<form:errors path="comment"></form:errors>
 			<br />
 
 			<form:label path="" for="userId">User :</form:label>
