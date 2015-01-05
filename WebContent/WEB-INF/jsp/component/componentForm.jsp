@@ -8,13 +8,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<link rel="stylesheet" type="text/css" media="screen" href="${contextPath}/css/style.css" />
 <title>Component</title>
 </head>
 <body>
 	<!-- Include top navbar for navigation -->
 	<%@ include file="/WEB-INF/jsp/navbar.jsp" %>
 
-	<div class="form">
+	<div class="center-data">
 		<h1>Component</h1>
 		<h2>Create a component</h2>
 		

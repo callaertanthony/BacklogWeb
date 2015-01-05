@@ -32,7 +32,7 @@ public class StoryController {
 	@RequestMapping(value="/{id}.do", method=RequestMethod.GET)
 	public ModelAndView detail(@PathVariable int id){
 		Story zStory = backlogService.getStory(id);
-		return new ModelAndView("story/detail.do", "story", zStory);
+		return new ModelAndView("story/storyView", "story", zStory);
 	}
 	
 	@InitBinder

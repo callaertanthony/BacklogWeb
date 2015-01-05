@@ -5,13 +5,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<link rel="stylesheet" type="text/css" media="screen" href="${contextPath}/css/style.css" />
 <title>User</title>
 </head>
 <body>
 	<!-- Include top navbar for navigation -->
 	<%@ include file="/WEB-INF/jsp/navbar.jsp" %>
 	
-	<div class="form">
+	<div class="center-data">
 		<h1>User</h1>
 		<h2>Create an user</h2>
 		
