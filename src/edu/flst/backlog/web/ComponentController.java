@@ -5,6 +5,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.flst.backlog.bo.Component;
+import edu.flst.backlog.bo.Job;
 import edu.flst.backlog.bo.Story;
+import edu.flst.backlog.bo.User;
 import edu.flst.backlog.service.BacklogServiceImpl;
 
 
@@ -25,15 +28,21 @@ public class ComponentController {
 	@RequestMapping(value = "/new.do", method = RequestMethod.GET)
 	public ModelAndView newComponent() {
 		
-		ModelAndView ModelAndView = new ModelAndView("component/componentForm", "command", new Component());
-		ModelAndView.addObject("users", backlogService.listUsers());
+		ModelAndView modelAndView = new ModelAndView("component/componentForm", "component", new Component());
+		modelAndView.addObject("users", backlogService.listUsers());
 		
-		return ModelAndView;
+		return modelAndView;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView formComponent(@Valid @ModelAttribute Component component){
-
+	public ModelAndView formComponent(@Valid @ModelAttribute Component component, BindingResult result){
+		if(result.hasErrors()){
+			ModelAndView modelAndView = new ModelAndView("component/componentForm", "component", component);
+			modelAndView.addObject("errors", result.getAllErrors());
+			modelAndView.addObject("users", backlogService.listUsers());
+			
+			return modelAndView;
+		}
 		Component newComponent = new Component();
 		if(component.getId() > 0){
 			newComponent = component;
@@ -62,7 +71,7 @@ public class ComponentController {
 	public ModelAndView editComponent(@PathVariable int id){
 		Component component = backlogService.getComponent(id);
 		
-		ModelAndView modelAndView = new ModelAndView("component/componentForm", "command", component);
+		ModelAndView modelAndView = new ModelAndView("component/componentForm", "component", component);
 		modelAndView.addObject("users", backlogService.listUsers());
 		
 		return modelAndView;

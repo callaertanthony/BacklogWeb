@@ -13,13 +13,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Component implements Serializable, Comparable<Component> {
 	private static final long serialVersionUID = -4773729125526258175L;
 
-	@NotNull @Min(0)
 	private int id;
 	@Size(min=1, max=50)
 	private String label;
-	@NotEmpty
+	
 	private User owner;
-	@Size(min=1, max=5000)
+	@Size(max=5000)
 	private String description;
 
 	public int getId() {

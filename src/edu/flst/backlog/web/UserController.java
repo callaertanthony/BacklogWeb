@@ -1,9 +1,12 @@
 package edu.flst.backlog.web;
 
 import java.util.Collection;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +26,7 @@ public class UserController {
 	@RequestMapping(value="/new.do", method=RequestMethod.GET)
 	public ModelAndView newUser(){
 		
-		ModelAndView modelAndView = new ModelAndView("user/userForm", "command", new User());
+		ModelAndView modelAndView = new ModelAndView("user/userForm", "user", new User());
 		modelAndView.addObject("jobs", Job.values());
 		
 		return modelAndView;
@@ -39,7 +42,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView formUser(@ModelAttribute User user){
+	public ModelAndView formUser(@ModelAttribute @Valid User user, BindingResult result){
+		if(result.hasErrors()){
+			ModelAndView modelAndView = new ModelAndView("user/userForm", "user", user);
+			modelAndView.addObject("errors", result.getAllErrors());
+			modelAndView.addObject("jobs", Job.values());
+			
+			return modelAndView;
+		}
 		
 		User newUser = new User();
 		if(user.getId() > 0){
@@ -70,7 +80,7 @@ public class UserController {
 		
 		User user = backlogService.getUser(id);
 		
-		ModelAndView modelAndView = new ModelAndView("user/userForm", "command", user);
+		ModelAndView modelAndView = new ModelAndView("user/userForm", "user", user);
 		modelAndView.addObject("jobs", Job.values());
 		
 		return modelAndView;

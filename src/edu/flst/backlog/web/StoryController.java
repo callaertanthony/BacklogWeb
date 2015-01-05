@@ -1,8 +1,11 @@
 package edu.flst.backlog.web;
 
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import edu.flst.backlog.bo.Status;
 import edu.flst.backlog.bo.Story;
+import edu.flst.backlog.bo.User;
 import edu.flst.backlog.service.BacklogServiceImpl;
 
 @Controller
@@ -22,7 +26,7 @@ public class StoryController {
 	@RequestMapping(value="/new.do", method = RequestMethod.GET)
 	public ModelAndView newStory(){
 		
-		ModelAndView modelAndView = new ModelAndView("story/storyForm", "command", new Story());
+		ModelAndView modelAndView = new ModelAndView("story/storyForm", "story", new Story());
 		modelAndView.addObject("users", backlogService.listUsers());
 		modelAndView.addObject("components", backlogService.listComponents());
 		modelAndView.addObject("status", Status.values());
@@ -31,7 +35,16 @@ public class StoryController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView formStory(@ModelAttribute Story story){	
+	public ModelAndView formStory(@Valid @ModelAttribute Story story, BindingResult result){	
+		if(result.hasErrors()){
+			ModelAndView modelAndView = new ModelAndView("story/storyForm", "story", story);
+			modelAndView.addObject("errors", result.getAllErrors());
+			modelAndView.addObject("users", backlogService.listUsers());
+			modelAndView.addObject("components", backlogService.listComponents());
+			modelAndView.addObject("status", Status.values());
+			
+			return modelAndView;
+		}
 		
 		Story newStory = new Story();
 		if(story.getId() > 0){
@@ -71,7 +84,7 @@ public class StoryController {
 		
 		Story story = backlogService.getStory(id);
 		
-		ModelAndView modelAndView = new ModelAndView("story/storyForm", "command", story);
+		ModelAndView modelAndView = new ModelAndView("story/storyForm", "story", story);
 		modelAndView.addObject("users", backlogService.listUsers());
 		modelAndView.addObject("components", backlogService.listComponents());
 		modelAndView.addObject("status", Status.values());

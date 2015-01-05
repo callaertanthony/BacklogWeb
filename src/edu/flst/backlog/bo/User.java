@@ -13,10 +13,11 @@ public class User implements Serializable, Comparable<User> {
 
 	private static final long serialVersionUID = -6186603359686273975L;
 
-	@NotNull @Min(0)
 	private int id;
+	@NotNull
 	@Size(min=1, max=40)
 	private String firstName;
+	@NotNull
 	@Size(min=1, max=40)
 	private String lastName;
 	@NotNull
