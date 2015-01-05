@@ -1,12 +1,12 @@
 package edu.flst.backlog.web;
 
 import java.util.Collection;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.flst.backlog.bo.Job;
-import edu.flst.backlog.bo.Story;
 import edu.flst.backlog.bo.User;
 import edu.flst.backlog.service.BacklogServiceImpl;
 
@@ -65,7 +64,7 @@ public class UserController {
 		
 		backlogService.updateUser(newUser);
 		
-		return new ModelAndView("redirect:/user/view/" + newUser.getId() + ".do", "user", newUser);
+		return new ModelAndView("redirect:/user/view/" + user.getId() + ".do", "user", newUser);
 	}
 	
 	@RequestMapping(value="/view/{id}.do", method = RequestMethod.GET)
@@ -85,27 +84,6 @@ public class UserController {
 		modelAndView.addObject("jobs", Job.values());
 		
 		return modelAndView;
-	}
-	
-	@RequestMapping(value="/remove/{id}.do", method = RequestMethod.GET)
-	public ModelAndView removeUser(@PathVariable int id){
-		
-		User user = backlogService.getUser(id);
-		
-		Collection<Story> stories = backlogService.getBacklog().getStories();
-		for(Story story : stories){
-			if(user.equals(story.getComponent().getOwner())){
-				story.getComponent().setOwner(new User());
-			}
-			if(user.equals(story.getUser())){
-				story.setUser(new User());
-			}
-		}
-		
-		
-		backlogService.deleteUser(user);
-		
-		return new ModelAndView("redirect:/user/list.do");
 	}
 }
 

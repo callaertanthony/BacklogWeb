@@ -16,6 +16,7 @@
 
 	<div class="center-data">
 		<h1>User</h1>
+		<h2>Create an user</h2>
 
 		<form:form name="UserForm" commandName="user">
 			<form:hidden path="id" value="${user.id > 0 ? user.id : -1 }" />

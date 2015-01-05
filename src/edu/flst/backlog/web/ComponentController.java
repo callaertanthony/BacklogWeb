@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.flst.backlog.bo.Component;
+import edu.flst.backlog.bo.Job;
 import edu.flst.backlog.bo.Story;
+import edu.flst.backlog.bo.User;
 import edu.flst.backlog.service.BacklogServiceImpl;
 
 
@@ -50,7 +52,6 @@ public class ComponentController {
 			modelAndView.addObject("errors", result.getAllErrors());
 			modelAndView.addObject("users", backlogService.listUsers());
 			
-			
 			return modelAndView;
 		}
 		Component newComponent = new Component();
@@ -61,12 +62,12 @@ public class ComponentController {
 		}
 		
 		if(component.getOwner() != null){
-			newComponent.setOwner(backlogService.getUser(component.getOwner().getId()));
+			component.setOwner(backlogService.getUser(component.getOwner().getId()));
 		}
 		
 		backlogService.updateComponent(newComponent);
 		
-		return new ModelAndView("redirect:/component/view/" + newComponent.getId() + ".do", "component", newComponent);
+		return new ModelAndView("redirect:/component/view/" + component.getId() + ".do", "component", newComponent);
 	}
 	
 	@RequestMapping(value="/view/{id}.do", method = RequestMethod.GET)
@@ -87,18 +88,4 @@ public class ComponentController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="/remove/{id}.do", method = RequestMethod.GET)
-	public ModelAndView removeComponent(@PathVariable int id){
-		Component component = backlogService.getComponent(id);
-		
-		for(Story story : backlogService.getBacklog().getStories()){
-			if(component.equals(story.getComponent())){
-				story.setComponent(new Component());
-			}
-		}
-		
-		backlogService.deleteComponent(component);
-		
-		return new ModelAndView("redirect:/component/list.do");
-	}
 }

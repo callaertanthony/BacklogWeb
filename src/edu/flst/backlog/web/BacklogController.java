@@ -1,19 +1,21 @@
 package edu.flst.backlog.web;
 
+import java.io.IOException;
 import java.util.Collection;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.flst.backlog.bo.Backlog;
+import edu.flst.backlog.bo.Component;
+import edu.flst.backlog.bo.Job;
+import edu.flst.backlog.bo.Status;
 import edu.flst.backlog.bo.Story;
+import edu.flst.backlog.bo.User;
+import edu.flst.backlog.service.BacklogService;
 import edu.flst.backlog.service.BacklogServiceImpl;
 
 @Controller
@@ -23,34 +25,113 @@ public class BacklogController {
 	
 	@RequestMapping(value = "/backlog.do", method = RequestMethod.GET)
 	public ModelAndView showBacklog() {
-		Backlog zBackLog = backlogService.getBacklog();
+		Backlog zBackLog = new Backlog();
+		zBackLog = this.test();
 		Collection<Story> cStory =  zBackLog.getStories();
-		ModelAndView ModelAndView = new ModelAndView("backlog", "backlog", zBackLog);
+		ModelAndView ModelAndView = new ModelAndView("backlog");
 		ModelAndView.addObject("backlog", zBackLog);
 		ModelAndView.addObject("stories", cStory);
 		return ModelAndView;
 	}
 	
-	@RequestMapping(value = "/editBacklog.do", method = RequestMethod.GET)
-	public ModelAndView editBacklog() {
-		Backlog zBackLog = backlogService.getBacklog();
-		ModelAndView modelAndView = new ModelAndView("backlog/backlogForm", "backlog", zBackLog);
-		return modelAndView;
-	}
-	
-	@RequestMapping(value = "/updateBacklog.do", method = RequestMethod.POST)
-	public ModelAndView formBackLog(@Valid @ModelAttribute Backlog backlog, BindingResult result){
-		if(result.hasErrors()){
-			ModelAndView modelAndView = new ModelAndView("backlog/backlogView", "backlog", backlog);
-			modelAndView.addObject("errors", result.getAllErrors());
-			modelAndView.addObject("users", backlogService.listUsers());
-			
-			return modelAndView;
-		}
-		Backlog zBacklog = backlogService.getBacklog();
-		zBacklog.setOwner(backlog.getOwner());
-		zBacklog.setDescription(backlog.getDescription());
+	public Backlog test() {
+		User zUser = new User();
+		zUser.setFirstName("Tom");
+		zUser.setLastName("De Puniet");
+		zUser.setJob(Job.ANALYST);
+		backlogService.createUser(zUser);
 		
-		return new ModelAndView("redirect:/backlog/backlogView", "backlog", zBacklog);
+		Component zComponent = new Component();
+		zComponent.setLabel("label component...");
+		zComponent.setDescription("description component...");
+		zComponent.setOwner(zUser);
+		Component zComponent2 = new Component();
+		zComponent2.setLabel("label component2...");
+		zComponent2.setDescription("description component2...");
+		zComponent2.setOwner(zUser);
+		Component zComponent3 = new Component();
+		zComponent3.setLabel("label component3...");
+		zComponent3.setDescription("description component3...");
+		zComponent3.setOwner(zUser);
+		
+		Story zStory = new Story();
+		zStory.setComment("comment story1...");
+		zStory.setLabel("Story 1 (label)");
+		zStory.setStatus(Status.OPEN);
+		zStory.setUser(zUser);
+		zStory.setComponent(zComponent);
+		backlogService.createStory(zStory);
+		
+		Story zStory2 = new Story();
+		zStory2.setComment("comment story2...");
+		zStory2.setLabel("Story 2 (label)");
+		zStory2.setStatus(Status.IN_PROGRESS);
+		zStory2.setUser(zUser);
+		zStory2.setComponent(zComponent2);
+		backlogService.createStory(zStory2);
+		
+		Story zStory3 = new Story();
+		zStory3.setComment("comment story3...");
+		zStory3.setLabel("Story 3 (label)");
+		zStory3.setStatus(Status.DONE);
+		zStory3.setUser(zUser);
+		zStory3.setComponent(zComponent2);
+		backlogService.createStory(zStory3);
+		
+		Story zStory4 = new Story();
+		zStory4.setComment("comment story4...");
+		zStory4.setLabel("Story 4 (label)");
+		zStory4.setStatus(Status.DONE);
+		zStory4.setUser(zUser);
+		zStory4.setComponent(zComponent);
+		backlogService.createStory(zStory4);
+		
+		Story zStory5 = new Story();
+		zStory5.setComment("comment story5...");
+		zStory5.setLabel("Story 5 (label)");
+		zStory5.setStatus(Status.DONE);
+		zStory5.setUser(zUser);
+		zStory5.setComponent(zComponent);
+		backlogService.createStory(zStory5);
+		
+		Story zStory6 = new Story();
+		zStory6.setComment("comment story6...");
+		zStory6.setLabel("Story 6 (label)");
+		zStory6.setStatus(Status.DONE);
+		zStory6.setUser(zUser);
+		zStory6.setComponent(zComponent2);
+		backlogService.createStory(zStory6);
+		
+		Story zStory7 = new Story();
+		zStory7.setComment("comment story7...");
+		zStory7.setLabel("Story 7 (label)");
+		zStory7.setStatus(Status.DONE);
+		zStory7.setUser(zUser);
+		zStory7.setComponent(zComponent3);
+		backlogService.createStory(zStory7);
+		Story zStory8 = new Story();
+		zStory8.setComment("comment story8...");
+		zStory8.setLabel("Story 8 (label)");
+		zStory8.setStatus(Status.DONE);
+		zStory8.setUser(zUser);
+		zStory8.setComponent(zComponent2);
+		backlogService.createStory(zStory8);
+		
+		
+		//CREATING THE BACKLOG
+		String backlog_desc = 
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tincidunt iaculis iaculis. "
+				+ "Fusce tempus vulputate scelerisque. Donec vel lorem at ex gravida lobortis. "
+				+ "Vivamus varius augue vel orci bibendum ullamcorper. Fusce placerat justo ut nisl convallis, nec mattis sem blandit. "
+				+ "Nullam at odio non mi finibus rutrum sit amet auctor velit. Sed eu lacinia massa, et vestibulum risus. "
+				+ "Quisque imperdiet, nibh eu dapibus efficitur, magna dolor feugiat diam, vitae facilisis augue leo nec nisl. "
+				+ "Ut sit amet volutpat nulla. Quisque vulputate eu nisi id viverra. Pellentesque euismod justo aliquam elit porttitor, "
+				+ "id viverra ex elementum. Ut sed erat turpis. "
+				+ "Phasellus imperdiet tellus in lectus ultricies egestas. Morbi at magna bibendum nunc rutrum maximus.";
+		Backlog zBackLog = new Backlog();
+		zBackLog = backlogService.getBacklog();
+		zBackLog.setOwner(zUser);
+		zBackLog.setDescription(backlog_desc);
+		return zBackLog;
 	}
 }
