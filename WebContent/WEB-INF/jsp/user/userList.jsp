@@ -15,7 +15,7 @@
 	<%@ include file="/WEB-INF/jsp/navbar.jsp" %>
 	<div class="center-data">
 		<h1>User</h1>
-		<h2>User list</h2>
+		<h2>User list.</h2>
 		<table>
 			<c:forEach items="${users}" var="user">
 				<tr>

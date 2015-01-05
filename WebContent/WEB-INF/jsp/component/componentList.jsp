@@ -8,32 +8,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" type="text/css" media="screen" href="${contextPath}/css/style.css" />
-<title>User</title>
+<title>Component</title>
 </head>
 <body>
 	<!-- Include top navbar for navigation -->
 	<%@ include file="/WEB-INF/jsp/navbar.jsp" %>
 	<div class="center-data">
-	<h1>User</h1>
-	<h2>User "${user.firstName} ${user.lastName}".</h2>
+		<h1>Component</h1>
+		<h2>Component list.</h2>
 		<table>
-			<tr>
-		        <td>Id : </td>
-		        <td>${user.id}</td>
-		    </tr>
-		    <tr>
-		        <td>Name : </td>
-		        <td>${user.lastName}</td>
-		    </tr>
-		    <tr>
-		        <td>Firstname: </td>
-		        <td>${user.firstName}</td>
-		    </tr>
-		    <tr>
-		        <td>Job: </td>
-		        <td>${user.job}</td>
-		    </tr>
-		</table>
-	</div>  
+			<c:forEach items="${components}" var="component">
+				<tr>
+			        <td>${component.label}</td>
+			        <td>${component.owner.firstName} ${component.owner.lastName}</td>
+			        <td><a href="<c:url value="edit/${component.id }.do"/>">edit</a></td>
+			</c:forEach>
+	    </table>
+				
+		
+		
+	</div>
 </body>
 </html>

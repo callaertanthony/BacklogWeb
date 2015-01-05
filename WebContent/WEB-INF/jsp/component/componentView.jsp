@@ -16,7 +16,7 @@
 	
 	<div class="center-data">
 		<h1>Component</h1>
-		<h2>Component ${component.label} added.</h2>
+		<h2>Component "${component.label}".</h2>
 		
 		<table>
 			<tr>

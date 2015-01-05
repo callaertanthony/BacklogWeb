@@ -1,6 +1,8 @@
 package edu.flst.backlog.web;
 
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,15 @@ public class ComponentController {
 		
 		ModelAndView modelAndView = new ModelAndView("component/componentForm", "component", new Component());
 		modelAndView.addObject("users", backlogService.listUsers());
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/list.do", method=RequestMethod.GET)
+	public ModelAndView listUsers(){
+		Collection<Component> cComponent= backlogService.listComponents();
+		ModelAndView modelAndView = new ModelAndView("component/componentList");
+		modelAndView.addObject("components", cComponent);
 		
 		return modelAndView;
 	}

@@ -35,7 +35,7 @@ public class UserController {
 	@RequestMapping(value="/list.do", method=RequestMethod.GET)
 	public ModelAndView listUsers(){
 		Collection<User> cUser= backlogService.listUsers();
-		ModelAndView modelAndView = new ModelAndView("user/userList", "command", new User());
+		ModelAndView modelAndView = new ModelAndView("user/userList");
 		modelAndView.addObject("users", cUser);
 		
 		return modelAndView;

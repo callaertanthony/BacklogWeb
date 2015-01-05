@@ -30,7 +30,7 @@
 	<div id="backlog-stories">
 		<c:forEach items="${stories}" var="story">
 			<div class="story thumbnail">
-				<a href="<c:url value="story/${story.id}.do"/>">
+				<a href="<c:url value="story/view/${story.id}.do"/>">
 					<h3>${story.label}<br></h3>
 					<b>Comment:</b> ${story.comment}<br>
 					<b>Created:</b>	${story.createdDate}<br>

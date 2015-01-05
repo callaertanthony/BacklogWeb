@@ -16,7 +16,7 @@
 	<%@ include file="/WEB-INF/jsp/navbar.jsp" %>
 	<div class="center-data thumbnail" id="story-detail">
 		<h1>Story</h1>
-		<h2>Story ${story.label} added.</h2>
+		<h2>Story "${story.label}".</h2>
 		<table>
 			<tr>
 		        <td>Id: </td>
@@ -51,6 +51,10 @@
 		        <td>${story.component.description} - (${story.component.owner.firstName} ${story.component.owner.lastName})</td>
 		    </tr>
 		</table>
+		<div style="text-align:center;">
+		<br/>
+			<a href="<c:url value="/story/edit/${story.id }.do"/>">(edit this story)</a>
+		</div>
 	</div>
 </body>
 </html>

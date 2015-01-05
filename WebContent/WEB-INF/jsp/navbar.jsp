@@ -5,11 +5,13 @@
 	</div>
 	<div id="navbar-switch">
 		<a href="${contextPath}/component/new.do">Create Component</a>
-		 /  
+		 / 
+		<a href="${contextPath}/component/list.do">Modify Component</a>
+		 / 
 		<a href="${contextPath}/user/new.do">Create User</a>
 		 / 
-		<a href="${contextPath}/story/new.do">Create Story</a>
-		 / 
 		<a href="${contextPath}/user/list.do">Modify User</a>
+		 / 
+		<a href="${contextPath}/story/new.do">Create Story</a> 
 	</div>
 </div>
