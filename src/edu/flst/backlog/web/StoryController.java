@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import edu.flst.backlog.bo.Status;
 import edu.flst.backlog.bo.Story;
-import edu.flst.backlog.bo.User;
 import edu.flst.backlog.service.BacklogServiceImpl;
 
 @Controller
@@ -90,6 +89,15 @@ public class StoryController {
 		modelAndView.addObject("status", Status.values());
 		
 		return modelAndView;
+	}
+	
+	@RequestMapping(value="/remove/{id}.do", method = RequestMethod.GET)
+	public ModelAndView removeStory(@PathVariable int id){
+		Story story = backlogService.getStory(id);
+		
+		backlogService.deleteStory(story);
+		
+		return new ModelAndView("redirect:/backlog.do");
 	}
 	
 }
