@@ -39,10 +39,12 @@ public class BacklogController {
 	public ModelAndView editBacklog() {
 		Backlog zBackLog = backlogService.getBacklog();
 		ModelAndView modelAndView = new ModelAndView("backlog/backlogForm", "backlog", zBackLog);
+		modelAndView.addObject("users", backlogService.listUsers());
+		
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/updateBacklog.do", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView formBackLog(@Valid @ModelAttribute Backlog backlog, BindingResult result){
 		if(result.hasErrors()){
 			ModelAndView modelAndView = new ModelAndView("backlog/backlogView", "backlog", backlog);
@@ -51,10 +53,14 @@ public class BacklogController {
 			
 			return modelAndView;
 		}
-		Backlog zBacklog = backlogService.getBacklog();
-		zBacklog.setOwner(backlog.getOwner());
-		zBacklog.setDescription(backlog.getDescription());
+		if(backlog.getOwner() != null){
+			backlogService.getBacklog().setOwner(backlogService.getUser(backlog.getOwner().getId()));
+		}
 		
-		return new ModelAndView("redirect:/backlog/backlogView", "backlog", zBacklog);
+		if(backlog.getDescription() != null){
+			backlogService.getBacklog().setDescription(backlog.getDescription());
+		}
+		
+		return new ModelAndView("redirect:/backlog.do");
 	}
 }
