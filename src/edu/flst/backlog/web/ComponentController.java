@@ -52,6 +52,7 @@ public class ComponentController {
 			modelAndView.addObject("errors", result.getAllErrors());
 			modelAndView.addObject("users", backlogService.listUsers());
 			
+			
 			return modelAndView;
 		}
 		Component newComponent = new Component();
