@@ -1,6 +1,5 @@
 package edu.flst.backlog.web;
 
-import java.io.IOException;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import edu.flst.backlog.bo.Job;
 import edu.flst.backlog.bo.Status;
 import edu.flst.backlog.bo.Story;
 import edu.flst.backlog.bo.User;
-import edu.flst.backlog.service.BacklogService;
 import edu.flst.backlog.service.BacklogServiceImpl;
 
 @Controller
