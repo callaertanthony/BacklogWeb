@@ -18,7 +18,7 @@ public class Backlog implements Serializable {
 	private List<Story> stories = new ArrayList<Story>();
 	@Size(min=1, max=5000)
 	private String description;
-	@NotNull
+	
 	private User owner;
 
 	public void setStories(List<Story> stories) {

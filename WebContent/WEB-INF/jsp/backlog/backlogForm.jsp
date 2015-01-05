@@ -22,7 +22,11 @@
 		<form:form action="updateBacklog.do" name="formBacklog" commandName="backlog">
 	
 			<form:label for="backlogOwner" path="">Owner:</form:label>
-			<form:input type="text" id="backlogOwner" path="owner" />
+			<form:select id="backlogOwner" path="owner.id">
+				<c:forEach items="${users}" var="user">
+					<form:option value='${user.id}'>${user.firstName} - ${user.lastName}</form:option>
+				</c:forEach>
+			</form:select><br/>
 			<form:errors path="owner"></form:errors>
 			<br/>
 			
