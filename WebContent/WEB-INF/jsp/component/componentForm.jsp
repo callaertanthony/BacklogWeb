@@ -8,32 +8,39 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<link rel="stylesheet" type="text/css" media="screen" href="${contextPath}/css/style.css" />
 <title>Component</title>
 </head>
 <body>
-	<h1>Component</h1>
-	<h2>Create a component</h2>
-
-	<form:form name="formComponent">
-		<form:hidden path="id" value="${command.id > 0 ? command.id : -1 }"/>
-
-		<form:label for="componentLabel" path="">Label:</form:label>
-		<form:input type="text" id="componentLabel" path="label" />
-		<br />
-
-		<form:label for="componentOwner" path="">Owner:</form:label>
-		<form:select id="userId" path="owner.id">
-			<c:forEach items="${users}" var="user">
-				<form:option value='${user.id}'>${user.firstName} - ${user.lastName}</form:option>
-			</c:forEach>
-		</form:select><br/>
-
-		<form:label for="componentDescription" path="">Description:</form:label>
-		<form:input type="text" id="componentDescription" path="description" />
-		<br />
-
-		<input type="submit" value="Submit" />
-		<br />
-	</form:form>
+	<!-- Include top navbar for navigation -->
+	<%@ include file="/WEB-INF/jsp/navbar.jsp" %>
+	
+	<div class="center-data">
+		<h1>Component</h1>
+		<h2>Create a component</h2>
+		
+		<form:form name="formComponent">
+			<form:hidden path="id" value="${command.id > 0 ? command.id : -1 }"/>
+		
+			<form:label for="componentLabel" path="">Label:</form:label>
+			<form:input type="text" id="componentLabel" path="label" />
+			<br />
+	
+			<form:label for="componentOwner" path="">Owner:</form:label>
+			<form:select id="userId" path="owner.id">
+				<c:forEach items="${users}" var="user">
+					<form:option value='${user.id}'>${user.firstName} - ${user.lastName}</form:option>
+				</c:forEach>
+			</form:select><br/>
+	
+			<form:label for="componentDescription" path="">Description:</form:label>
+			<form:input type="text" id="componentDescription" path="description" />
+			<br />
+	
+			<input type="submit" value="Submit" />
+			<br />
+		</form:form>
+	</div>
 </body>
 </html>

@@ -1,20 +1,36 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="/WEB-INF/c.tld" %> 
 
 <html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>User form</title>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<link rel="stylesheet" type="text/css" media="screen" href="${contextPath}/css/style.css" />
+<title>User</title>
 </head>
 <body>
-	<h1>Add user</h1>
-	<form:form name="UserForm">
-		<form:hidden path="id" value="${command.id > 0 ? command.id : -1 }"/>
-		<form:input path="firstName"/>
-		<form:input path="lastName"/>
-		<form:select path="job" items="${jobs}"></form:select>
-		<input type="submit" value="OK" name="envoyer" />
-	</form:form>
+	<!-- Include top navbar for navigation -->
+	<%@ include file="/WEB-INF/jsp/navbar.jsp" %>
+	
+	<div class="center-data">
+		<h1>User</h1>
+		<h2>Create an user</h2>
+		
+		<form:form name="UserForm">
+			<form:hidden path="id" value="${command.id > 0 ? command.id : -1 }"/>
+		
+			<form:label for="userFirstName" path="">First name:</form:label>
+			<form:input path="firstName" id="userFirstName"/><br/>
+			
+			<form:label for="userlastName" path="">Last name:</form:label>
+			<form:input path="lastName" id="userLastName"/><br/>
+			
+			<form:label for="userJob" path="">Job:</form:label>
+			<form:select path="job" id="userJob" items="${jobs}"></form:select><br/>
+			
+			<input type="submit" value="Submit" />
+		</form:form>
+	</div>
 </body>
 </html>

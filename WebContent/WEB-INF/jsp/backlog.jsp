@@ -7,52 +7,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
-<style type="text/css"> 
-	#navbar {
-		top:0;
-		left:0;
-		position: fixed;
-		margin:0;
-		padding: 10px;
-		width: 100%;
-		color: white;
-		background: #4096EE;
-		text-align:right;
-		z-index: 1;
-	}
-	#navbar > a { color: white; }
-	#navbar > a:last-child { padding-right: 20px;}
-	#backlog-info{
-		background-color: #C3D9FF;
-		margin-bottom: 10px;
-	 	width=auto;
-	}
-	#backlog-owner, #backlog-description, .story{ padding: 10px 5px; }
-	#backlog-stories { width:100%; }
-	.story {
-		position: relative;
-		float:left;
-		width: 260px;
-		margin: 0 5px;
-		margin-bottom: 10px;
-		border-radius: 6px;
-		background: #f0f0f0;
-	}
-	h1{ margin-top: 60px;}
-</style>
-
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<link rel="stylesheet" type="text/css" media="screen" href="${contextPath}/css/style.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 <title>BackLog</title>
 </head>
 <body>
-	<div id="navbar">
-		<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-		<a href="${contextPath}/component/new.do">Create Component</a>
-		 /  
-		<a href="${contextPath}/user/new.do">Create User</a>
-		 / 
-		<a href="${contextPath}/story/new.do">Create Story</a>
-	</div>
+	<!-- Include top navbar for navigation -->
+	<%@ include file="/WEB-INF/jsp/navbar.jsp" %>
+	
 	<h1 class="title">Backlog</h1>
 	<h2>Informations:</h2>
 	<div id="backlog-info">
@@ -66,14 +29,14 @@
 	<h2>Stories:</h2>
 	<div id="backlog-stories">
 		<c:forEach items="${stories}" var="story">
-			<div class="story">
-				Label: ${story.label}<br>
-				Comment: ${story.comment}<br>
-				Created: ${story.createdDate}<br>
-				Modified: ${story.modifiedDate}<br>
-				User: ${story.user.firstName} ${story.user.lastName}<br>
-				Status: ${story.status}<br>
-				Component: ${story.component.label} ${story.component.description} (${story.component.owner.firstName} ${story.component.owner.lastName})</br>
+			<div class="story thumbnail">
+				<a href="<c:url value="story/${story.id}.do"/>">
+					<h3>${story.label}<br></h3>
+					<b>Comment:</b> ${story.comment}<br>
+					<b>Created:</b>	${story.createdDate}<br>
+					<b>User:</b> ${story.user.firstName} ${story.user.lastName}<br>
+					<b>Status:</b> ${story.status}<br>
+				</a>
 			</div>
 		</c:forEach>
 	</div>
