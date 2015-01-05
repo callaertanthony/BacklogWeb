@@ -26,7 +26,8 @@
 		        <td>Description: </td>
 		        <td>${backlog.description}</td>
 		    </tr>
-		</table>
+		</table>		
 	</div>  
+	
 </body>
 </html>

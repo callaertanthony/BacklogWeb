@@ -1,6 +1,8 @@
 package edu.flst.backlog.web;
 
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import edu.flst.backlog.bo.Backlog;
 import edu.flst.backlog.bo.Status;
 import edu.flst.backlog.bo.Story;
 import edu.flst.backlog.service.BacklogServiceImpl;
@@ -98,6 +101,18 @@ public class StoryController {
 		backlogService.deleteStory(story);
 		
 		return new ModelAndView("redirect:/backlog.do");
+	}
+	
+	@RequestMapping("/lastStory.do")
+	public ModelAndView lastStory(){
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Collection<Story> latest = backlogService.getLatests();
+		return new ModelAndView("lastStory", "latest", latest);
 	}
 	
 }

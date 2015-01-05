@@ -39,6 +39,20 @@
 				</a>
 			</div>
 		</c:forEach>
+		
+						    <h2>Last update</h2>
+		<div id="latest">loading ...</div>
+		
+		<script type="text/javascript" src="/BacklogWeb/WebContent/js/prototype.js"></script>
+		<script>
+			new Ajax.PeriodicalUpdater(
+				'latest',
+				'/BacklogWeb/lastStory.do',
+				{
+					frequency: 5
+				}
+			);
+		</script>
 	</div>
 </body>
 </html>
