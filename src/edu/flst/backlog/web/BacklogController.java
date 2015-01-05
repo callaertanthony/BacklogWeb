@@ -57,12 +57,4 @@ public class BacklogController {
 		
 		return new ModelAndView("redirect:/backlog/backlogView", "backlog", zBacklog);
 	}
-	
-//	@RequestMapping(value = "/editBacklog.do", method = RequestMethod.GET)
-//	public ModelAndView editBacklog() {
-//		Backlog zBackLog = backlogService.getBacklog();
-//		ModelAndView ModelAndView = new ModelAndView("backlog");
-//		ModelAndView.addObject("backlog/backlogForm", zBackLog);
-//		return ModelAndView;
-//	}
 }
