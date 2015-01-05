@@ -1,6 +1,5 @@
 package edu.flst.backlog.web;
 
-import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,16 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.servlet.ModelAndView;
 
 import edu.flst.backlog.bo.Status;
 import edu.flst.backlog.bo.Story;
@@ -29,19 +19,8 @@ public class StoryController {
 
 	@Autowired private BacklogServiceImpl backlogService;
 	
-	@RequestMapping(value="{id}.do", method=RequestMethod.GET)
-	public ModelAndView detail(@PathVariable int id){
-		Story zStory = backlogService.getStory(id);
-		return new ModelAndView("story/detail.do", "story", zStory);
-	}
-	
-	@InitBinder
-	protected void initBinder(WebDataBinder binder){
-		
-	}
-	
 	@RequestMapping(value="/new.do", method = RequestMethod.GET)
-	public ModelAndView storyForm(){
+	public ModelAndView newStory(){
 		
 		ModelAndView modelAndView = new ModelAndView("story/storyForm", "command", new Story());
 		modelAndView.addObject("users", backlogService.listUsers());
@@ -51,14 +30,53 @@ public class StoryController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="/add.do", method = RequestMethod.POST)
-	public ModelAndView addStory(@ModelAttribute Story story, ModelMap model){
+	@RequestMapping(method = RequestMethod.POST)
+	public ModelAndView formStory(@ModelAttribute Story story){	
 		
-		story.setUser(backlogService.getUser(story.getUser().getId()));
-		story.setComponent(backlogService.getComponent(story.getComponent().getId()));
+		Story newStory = new Story();
+		if(story.getId() > 0){
+			newStory = story;
+			newStory.setCreatedDate(backlogService.getStory(story.getId()).getCreatedDate());
+		} else {
+			newStory = backlogService.createStory(story);
+		}
 		
-		Story newStory = backlogService.createStory(story);
+		if(story.getUser() != null){
+			newStory.setUser(backlogService.getUser(story.getUser().getId()));
+		}
+
+		if(story.getComponent() != null){
+			newStory.setComponent(backlogService.getComponent(story.getComponent().getId()));
+		}
 		
-		return new ModelAndView("story/storyView", "command", newStory);
+		if(story.getStatus() != null){
+			newStory.setStatus(story.getStatus());
+		}
+		
+		backlogService.updateStory(newStory);
+		
+		return new ModelAndView("redirect:/story/view/" + story.getId() + ".do", "story", newStory);
 	}
+	
+	@RequestMapping(value="/view/{id}.do", method = RequestMethod.GET)
+	public ModelAndView viewStory(@PathVariable int id){
+		
+		Story story = backlogService.getStory(id);
+		
+		return new ModelAndView("story/storyView", "story", story);
+	}
+	
+	@RequestMapping(value="/edit/{id}.do", method = RequestMethod.GET)
+	public ModelAndView editStory(@PathVariable int id){
+		
+		Story story = backlogService.getStory(id);
+		
+		ModelAndView modelAndView = new ModelAndView("story/storyForm", "command", story);
+		modelAndView.addObject("users", backlogService.listUsers());
+		modelAndView.addObject("components", backlogService.listComponents());
+		modelAndView.addObject("status", Status.values());
+		
+		return modelAndView;
+	}
+	
 }

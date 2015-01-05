@@ -1,19 +1,16 @@
 package edu.flst.backlog.web;
 
-import java.util.List;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.flst.backlog.bo.Component;
-import edu.flst.backlog.bo.User;
+import edu.flst.backlog.bo.Story;
 import edu.flst.backlog.service.BacklogServiceImpl;
 
 
@@ -22,14 +19,9 @@ import edu.flst.backlog.service.BacklogServiceImpl;
 public class ComponentController {
 	
 	@Autowired private BacklogServiceImpl backlogService;
-
-	@ModelAttribute("userCache")
-	public List<User> getUsers(){
-		return backlogService.listUsers();
-	}
 	
 	@RequestMapping(value = "/new.do", method = RequestMethod.GET)
-	public ModelAndView formComponent() {
+	public ModelAndView newComponent() {
 		
 		ModelAndView ModelAndView = new ModelAndView("component/componentForm", "command", new Component());
 		ModelAndView.addObject("users", backlogService.listUsers());
@@ -37,13 +29,41 @@ public class ComponentController {
 		return ModelAndView;
 	}
 	
-	@RequestMapping(value = "/add.do", method = RequestMethod.POST)
-	public ModelAndView addComponent(@ModelAttribute @Valid Component component, BindingResult result){
+	@RequestMapping(method = RequestMethod.POST)
+	public ModelAndView formComponent(@ModelAttribute Component component){
 
-		component.setOwner(backlogService.getUser(component.getOwner().getId()));
+		Component newComponent = new Component();
+		if(component.getId() > 0){
+			newComponent = component;
+		} else {
+			newComponent = backlogService.createComponent(component);
+		}
 		
-		Component newComponent = backlogService.createComponent(component);
+		if(component.getOwner() != null){
+			component.setOwner(backlogService.getUser(component.getOwner().getId()));
+		}
 		
-		return new ModelAndView("component/componentView", "component", newComponent);
+		backlogService.updateComponent(newComponent);
+		
+		return new ModelAndView("redirect:/component/view/" + component.getId() + ".do", "component", newComponent);
 	}
+	
+	@RequestMapping(value="/view/{id}.do", method = RequestMethod.GET)
+	public ModelAndView viewComponent(@PathVariable int id){
+		
+		Component component = backlogService.getComponent(id);
+		
+		return new ModelAndView("component/componentView", "component", component);
+	}
+	
+	@RequestMapping(value="/edit/{id}.do", method = RequestMethod.GET)
+	public ModelAndView editComponent(@PathVariable int id){
+		Component component = backlogService.getComponent(id);
+		
+		ModelAndView modelAndView = new ModelAndView("component/componentForm", "command", component);
+		modelAndView.addObject("users", backlogService.listUsers());
+		
+		return modelAndView;
+	}
+	
 }

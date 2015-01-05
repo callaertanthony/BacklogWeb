@@ -32,7 +32,8 @@
 	    </tr>
 	    <tr>
 	        <td>user: </td>
-	        <td>${story.user}</td>
+	        <td>${story.user.firstName} ${story.user.lastName}</td>
+        	<td>(${story.user.job})</td>
 	    </tr>
 	    <tr>
 	        <td>status: </td>
@@ -40,7 +41,7 @@
 	    </tr>
 	    <tr>
 	        <td>component: </td>
-	        <td>${story.component}</td>
+	        <td>${story.component.label}</td>
 	    </tr>
 	</table>
 </body>

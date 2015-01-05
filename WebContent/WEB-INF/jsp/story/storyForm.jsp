@@ -10,7 +10,8 @@
 <title>Create a story</title>
 </head>
 <body>
-	<form:form method="post" action="add.do">
+	<form:form method="post">
+		<form:hidden path="id" value="${command.id > 0 ? command.id : -1 }"/>
 	
 		<form:label path="" for="labelId">Label :</form:label>
 		<form:input path="label" id="labelId"/><br/>

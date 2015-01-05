@@ -9,7 +9,8 @@
 </head>
 <body>
 	<h1>Add user</h1>
-	<form:form name="UserForm" method="POST" action="add.do">
+	<form:form name="UserForm">
+		<form:hidden path="id" value="${command.id > 0 ? command.id : -1 }"/>
 		<form:input path="firstName"/>
 		<form:input path="lastName"/>
 		<form:select path="job" items="${jobs}"></form:select>
