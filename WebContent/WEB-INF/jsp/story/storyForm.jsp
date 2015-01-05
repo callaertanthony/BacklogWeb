@@ -17,7 +17,6 @@
 	<%@ include file="/WEB-INF/jsp/navbar.jsp"%>
 	<div class="center-data">
 		<h1>Story</h1>
-		<h2>Create a story</h2>
 
 		<form:form method="post" commandName="story">
 			<form:hidden path="id" value="${story.id > 0 ? story.id : -1 }" />
