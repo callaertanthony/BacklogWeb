@@ -2,6 +2,10 @@ package edu.flst.backlog.bo;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 
@@ -9,9 +13,13 @@ public class User implements Serializable, Comparable<User> {
 
 	private static final long serialVersionUID = -6186603359686273975L;
 
+	@NotNull @Min(0)
 	private int id;
+	@Size(min=1, max=40)
 	private String firstName;
+	@Size(min=1, max=40)
 	private String lastName;
+	@NotNull
 	private Job job;
 
 	public String getFirstName() {

@@ -3,20 +3,33 @@ package edu.flst.backlog.bo;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+import javax.validation.constraints.Size;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.hibernate.validator.constraints.NotEmpty;
 
 
 public class Story implements Serializable, Comparable<Story> {
 
 	private static final long serialVersionUID = -4589061225339520890L;
-
+	
+	@NotNull @Min(0)
 	private int id;
+	
+	@Size(min=1, max=50)
 	private String label;
+	@Size(min=1, max=5000)
 	private String comment;
 	private Date createdDate;
 	private Date modifiedDate;
+	@NotNull
 	private User user;
+	@NotNull
 	private Status status;
+	@NotNull
 	private Component component;
 
 	public int getId() {
