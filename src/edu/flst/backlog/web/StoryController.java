@@ -1,6 +1,7 @@
 package edu.flst.backlog.web;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 
 import javax.validation.Valid;
@@ -105,14 +106,8 @@ public class StoryController {
 	
 	@RequestMapping("/lastStory.do")
 	public ModelAndView lastStory(){
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Collection<Story> latest = backlogService.getLatests();
-		return new ModelAndView("/story/lastStory", "latest", latest);
+		Collection<Story> stories = backlogService.getLatests();
+		return new ModelAndView("/story/lastStory", "stories", stories);
 	}
 	
 }

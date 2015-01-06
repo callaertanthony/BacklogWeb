@@ -31,8 +31,8 @@
 		<c:forEach items="${stories}" var="story">
 			<div class="story thumbnail">
 				<a href="<c:url value="story/view/${story.id}.do"/>">
-					<h3>${story.label}<br></h3>
-					<b>Comment:</b> ${story.comment}<br>
+					<h3>${story.label}</h3>
+					<b>Comment:</b> ${story.comment}
 					<b>Created:</b>	${story.createdDate}<br>
 					<b>User:</b> ${story.user.firstName} ${story.user.lastName}<br>
 					<b>Status:</b> ${story.status}<br>
@@ -40,9 +40,11 @@
 			</div>
 		</c:forEach>
 		
-						    <h2>Last update</h2>
-		<div id="latest">loading ...</div>
-		
+		<br/>
+		<h2>Last update</h2>
+		<div>
+			<div id="latest">loading ...</div>
+		</div>
 		<script type="text/javascript" src="/BacklogWeb/js/prototype.js"></script>
 		<script>
 			new Ajax.PeriodicalUpdater(

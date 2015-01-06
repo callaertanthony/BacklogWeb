@@ -107,12 +107,13 @@ public class BacklogServiceImpl implements BacklogService {
 
 	@Override
 	public List<Story> getLatests() {
-		Collections.sort(baclklog.getStories(), new LatestStoryComparator());
-		if(baclklog.getStories().size() > 3){
-			return baclklog.getStories().subList(0, 3);			
+		List<Story> lStories = baclklog.getStories();
+		Collections.sort(lStories, new LatestStoryComparator());
+		int nbLatest = 3;
+		if(lStories.size() < 3) {
+			nbLatest = lStories.size();
 		}
-		
-		return baclklog.getStories();
+		return lStories.subList(0,  nbLatest);
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 <%@ taglib uri="/WEB-INF/c.tld" prefix="c" %>
 <%@ taglib uri="/WEB-INF/fmt.tld" prefix="fmt" %>
 
-<c:forEach items="${latest}" var="story">
+<c:forEach items="${stories}" var="story">
 	  ${story.label}<br/>
 </c:forEach>
