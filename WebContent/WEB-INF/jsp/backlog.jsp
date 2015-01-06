@@ -26,6 +26,10 @@
 			Description: ${backlog.description}
 		</div>
 	</div>
+	<div id="backlog-latest">
+			<h2>Lastest stories modified:</h2>	
+			<div id="latest">loading ...</div>
+	</div>
 	<h2>Stories:</h2>
 	<div id="backlog-stories">
 		<c:forEach items="${stories}" var="story">
@@ -39,13 +43,9 @@
 				</a>
 			</div>
 		</c:forEach>
-		
-		<br/>
-		<h2>Last update</h2>
-		<div>
-			<div id="latest">loading ...</div>
-		</div>
-		<script type="text/javascript" src="/BacklogWeb/js/prototype.js"></script>
+	</div>
+</body>
+<script type="text/javascript" src="/BacklogWeb/js/prototype.js"></script>
 		<script>
 			new Ajax.PeriodicalUpdater(
 				'latest',
@@ -54,7 +54,5 @@
 					frequency: 5
 				}
 			);
-		</script>
-	</div>
-</body>
+</script>
 </html>

@@ -2,5 +2,5 @@
 <%@ taglib uri="/WEB-INF/fmt.tld" prefix="fmt" %>
 
 <c:forEach items="${stories}" var="story">
-	  ${story.label}<br/>
+	  ${story.label} 
 </c:forEach>
