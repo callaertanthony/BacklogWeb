@@ -112,7 +112,7 @@ public class StoryController {
 			e.printStackTrace();
 		}
 		Collection<Story> latest = backlogService.getLatests();
-		return new ModelAndView("lastStory", "latest", latest);
+		return new ModelAndView("/story/lastStory", "latest", latest);
 	}
 	
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
+<%@ taglib uri="/WEB-INF/fmt.tld" prefix="fmt" %>
 <%@taglib prefix="c" uri="/WEB-INF/c.tld" %> 
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -43,11 +43,11 @@
 						    <h2>Last update</h2>
 		<div id="latest">loading ...</div>
 		
-		<script type="text/javascript" src="/BacklogWeb/WebContent/js/prototype.js"></script>
+		<script type="text/javascript" src="/BacklogWeb/js/prototype.js"></script>
 		<script>
 			new Ajax.PeriodicalUpdater(
 				'latest',
-				'/BacklogWeb/lastStory.do',
+				'/BacklogWeb/story/lastStory.do',
 				{
 					frequency: 5
 				}
