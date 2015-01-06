@@ -1,6 +1,6 @@
 BacklogWeb
 ==========
-Projet "BacklogWeb"
-Classe -> Master 1 (IPII)
-Cours -> J2EE
+Projet "BacklogWeb"<br/>
+Classe -> Master 1 (IPII)<br/>
+Cours -> J2EE<br/>
 Ressources -> 3 étudiants.
