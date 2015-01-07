@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" media="screen"
 	href="${contextPath}/css/style.css" />
 <title>Story</title>

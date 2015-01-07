@@ -6,6 +6,7 @@ body {
 		linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
 		linear-gradient(#eee .1em, transparent .1em);
 		background-size: 100% 1.2em;
+		margin-left : 7%;
 }
 label {
 	display:inline-block;
@@ -46,20 +47,25 @@ div.center-data > h1, div.center-data > h2 { text-align: center; }
 	width: 80%:
 }
 #backlog-info{
-	margin: 0 4%;
-	background-color: #C3D9FF;
 	margin-bottom: 10px;
- 	width=100%;
+	background-color: #C3D9FF;
+ 	width:60%;
+ 	float:left;
+}
+#Story-Latest{
+ 	float:left;
+ 	width: 30%;
+ 	margin-left : 7%;
+}
+#container_info_story{
+	margin-left : 7%;
 }
 #backlog-owner, #backlog-description, .story{ padding: 10px 5px; }
 #backlog-stories { 
 	width:90%;
-	margin: 0 auto; 
-}
-#backlog-latest{
-	margin: 0;
-	margin-top: 10px;
- 	width=100%;
+	margin: 0 auto;
+	float:left;
+	margin-left : 7%;
 }
 .story {
 	position: relative;
@@ -71,6 +77,7 @@ div.center-data > h1, div.center-data > h2 { text-align: center; }
 	background: #f0f0f0;
 }
 #story-detail { padding: 30px; }
+
 div.story > a{
 	display: block;
     height: 100%;

@@ -1,4 +1,5 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 <div id="navbar">
 	<div id="navbar-home">
 		<a href="${contextPath}/backlog.do">Home page</a>

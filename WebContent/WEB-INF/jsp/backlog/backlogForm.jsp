@@ -10,6 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" type="text/css" media="screen" href="${contextPath}/css/style.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 <title>Backlog</title>
 </head>
 <body>
