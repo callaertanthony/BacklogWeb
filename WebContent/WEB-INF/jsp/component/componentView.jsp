@@ -15,7 +15,7 @@
 	<!-- Include top navbar for navigation -->
 	<%@ include file="/WEB-INF/jsp/navbar.jsp" %>
 	
-	<div class="center-data">
+	<div class="container">
 		<h1>Component</h1>
 		<h2>Component "${component.label}".</h2>
 		

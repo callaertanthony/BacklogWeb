@@ -102,7 +102,6 @@ public class UserController {
 			}
 		}
 		
-		
 		backlogService.deleteUser(user);
 		
 		return new ModelAndView("redirect:/user/list.do");
