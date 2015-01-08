@@ -14,16 +14,24 @@
 <body>
 	<!-- Include top navbar for navigation -->
 	<%@ include file="/WEB-INF/jsp/navbar.jsp" %>
-	<div class="center-data">
+	<div class="container">
 		<h1>Component</h1>
 		<h2>Component list.</h2>
-		<table>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Label</th>
+					<th>Owner</th>
+					<th>Edit</th>
+					<th>Remove</th>
+				</tr>
+			</thead>
 			<c:forEach items="${components}" var="component">
 				<tr>
 			        <td>${component.label}</td>
 			        <td>${component.owner.firstName} ${component.owner.lastName}</td>
-			        <td><a href="<c:url value="edit/${component.id }.do"/>">edit</a></td>
-			        <td><a href="<c:url value="remove/${component.id }.do"/>">remove</a></td>
+			        <td><a href="<c:url value="edit/${component.id }.do"/>"><span class="glyphicon glyphicon-pencil"></a></td>
+			        <td><a href="<c:url value="remove/${component.id }.do"/>"><span class="glyphicon glyphicon-trash"></span></a></td>
 			</c:forEach>
 	    </table>
 				

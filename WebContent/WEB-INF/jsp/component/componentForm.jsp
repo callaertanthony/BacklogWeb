@@ -17,31 +17,38 @@
 	<!-- Include top navbar for navigation -->
 	<%@ include file="/WEB-INF/jsp/navbar.jsp" %>
 	
-	<div class="center-data">
+	<div class="container">
 		<h1>Component</h1>
 		
-		<form:form name="formComponent" commandName="component">
+		<form:form name="formComponent" commandName="component" class="form-horizontal">
 			<form:hidden path="id" value="${component.id > 0 ? component.id : -1 }"/>
-		
-			<form:label for="componentLabel" path="">Label:</form:label>
-			<form:input type="text" id="componentLabel" path="label" />
-			<form:errors path="label"></form:errors>
-			<br />
-	
-			<form:label for="componentOwner" path="">Owner:</form:label>
-			<form:select id="componentOwner" path="owner.id">
-				<c:forEach items="${users}" var="user">
-					<form:option value='${user.id}'>${user.firstName} - ${user.lastName}</form:option>
-				</c:forEach>
-			</form:select><br/>
-	
-			<form:label for="componentDescription" path="">Description:</form:label>
-			<form:input type="text" id="componentDescription" path="description" />
-			<form:errors path="description"></form:errors>
-			<br />
-	
-			<input type="submit" value="Submit" />
-			<br />
+			<div class="form-group">
+				<form:label for="componentLabel" path="" class="col-sm-2 control-label">Label:</form:label>
+				<div class="col-sm-10">
+					<form:input type="text" id="componentLabel" path="label" class="form-control"/>
+					<form:errors path="label" class="text-danger"></form:errors>
+				</div>
+			</div>
+			<div class="form-group">
+				<form:label for="componentOwner" path="" class="col-sm-2 control-label">Owner:</form:label>
+				<div class="col-sm-10">
+					<form:select id="componentOwner" path="owner.id" class="form-control">
+						<c:forEach items="${users}" var="user">
+							<form:option value='${user.id}'>${user.firstName} - ${user.lastName}</form:option>
+						</c:forEach>
+					</form:select>
+				</div>
+			</div>
+			<div class="form-group">
+				<form:label for="componentDescription" path="" class="col-sm-2 control-label">Description:</form:label>
+				<div class="col-sm-10">
+					<form:input type="text" id="componentDescription" path="description" class="form-control"/>
+					<form:errors path="description" class="text-danger"></form:errors>
+				</div>
+			</div>
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="submit" value="Submit" class="btn btn-primary"/>
+			</div>
 		</form:form>
 	</div>
 </body>
