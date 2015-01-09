@@ -15,11 +15,11 @@
 	<!-- Include top navbar for navigation -->
 	<%@ include file="/WEB-INF/jsp/navbar.jsp" %>
 	
-	<div class="container">
-		<h1>Component</h1>
-		<h2>Component "${component.label}".</h2>
+	<div class="container thumbnail">
+		<h1 class="text-center">Component</h1>
+		<h2 class="text-center">Component "${component.label}".</h2>
 		
-		<table>
+		<table class="table table-stripped">
 			<tr>
 		        <td>Id: </td>
 		        <td>${component.id}</td>
@@ -30,14 +30,23 @@
 		    </tr>
 		    <tr>
 		        <td>Owner: </td>
-		        <td>${component.owner.firstName} ${component.owner.lastName}</td>
-		        <td>(${component.owner.job})</td>
+		        <td>${component.owner.firstName} ${component.owner.lastName} - (${component.owner.job})</td>
 		    </tr>
 		    <tr>
 		        <td>Description: </td>
 		        <td>${component.description}</td>
 		    </tr>
 		</table>
+		<div style="text-align:center;">
+			<div class="btn-group" role="group" style="text-align: center;">
+			  <a href="<c:url value="/story/edit/${component.id }.do"/>">
+			  	<button type="button" class="btn btn-default">Edit</button>
+			  </a>
+			  <a href="<c:url value="/story/remove/${component.id }.do"/>">
+			  	<button type="button" class="btn btn-default">Remove</button>
+			  </a>
+			</div>
+		</div>
 	</div>  
 </body>
 </html>

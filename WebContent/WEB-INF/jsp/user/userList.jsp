@@ -28,7 +28,11 @@
 			</thead>
 			<c:forEach items="${users}" var="user">
 				<tr>
-			        <td>${user.firstName} ${user.lastName}</td>
+			        <td>
+			        	<a href="<c:url value="view/${user.id }.do"/>">
+			        		${user.firstName} ${user.lastName}
+			        	</a>
+			        </td>
 			        <td>${user.job}</td>
 			        <td><a href="<c:url value="edit/${user.id }.do"/>"><span class="glyphicon glyphicon-pencil"></a></td>
 			        <td><a href="<c:url value="remove/${user.id }.do"/>"><span class="glyphicon glyphicon-trash"></a></td>

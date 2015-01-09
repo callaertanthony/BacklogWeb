@@ -21,6 +21,11 @@
 		<div class="row">
 			<div class="col-md-8">
 				<div class="well">
+					<a href="<c:url value="editBacklog.do"/>">
+						<button type="button" class="close">						
+							<span class="glyphicon glyphicon-edit"></span>
+						</button>
+					</a>
 					<h2>Informations:</h2>
 					<div>
 						Owner: ${backlog.owner.firstName} ${backlog.owner.lastName}

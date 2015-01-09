@@ -17,27 +17,31 @@
 	<!-- Include top navbar for navigation -->
 	<%@ include file="/WEB-INF/jsp/navbar.jsp" %>
 	
-	<div class="center-data">
+	<div class="container">
 		<h1>Backlog</h1>
 		
-		<form:form name="formBacklog" commandName="backlog">
-	
-			<form:label for="backlogOwner" path="">Owner:</form:label>
-			<form:select id="backlogOwner" path="owner.id">
-				<c:forEach items="${users}" var="user">
-					<form:option value='${user.id}'>${user.firstName} - ${user.lastName}</form:option>
-				</c:forEach>
-			</form:select><br/>
-			<form:errors path="owner"></form:errors>
-			<br/>
-			
-			<form:label for="backlogDescription" path="">Description:</form:label>
-			<form:input type="text" id="backlogDescription" path="description" value="${backlog.description}"/>
-			<form:errors path="description"></form:errors>
-			<br />
-	
-			<input type="submit" value="Submit" />
-			<br />
+		<form:form name="formBacklog" commandName="backlog" class="form-horizontal">
+			<div class="form-group">
+				<form:label for="backlogOwner" path="" class="col-sm-2 control-label">Owner:</form:label>
+				<div class="col-sm-10">
+					<form:select id="backlogOwner" path="owner.id" class="form-control">
+						<c:forEach items="${users}" var="user">
+							<form:option value='${user.id}'>${user.firstName} - ${user.lastName}</form:option>
+						</c:forEach>
+					</form:select><br/>
+					<form:errors path="owner" class="text-danger"></form:errors>
+				</div>
+			</div>
+			<div class="form-group">
+				<form:label for="backlogDescription" path="" class="col-sm-2 control-label">Description:</form:label>
+				<div class="col-sm-10">
+					<form:input type="text" id="backlogDescription" path="description" class="form-control" value="${backlog.description}"/>
+					<form:errors path="description" class="text-danger"></form:errors>
+				</div>
+			</div>
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="submit" value="Submit" class="btn btn-primary"/>
+			</div>
 		</form:form>
 	</div>
 </body>

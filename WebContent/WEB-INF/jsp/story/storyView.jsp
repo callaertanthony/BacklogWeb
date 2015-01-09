@@ -14,10 +14,10 @@
 <body>
 	<!-- Include top navbar for navigation -->
 	<%@ include file="/WEB-INF/jsp/navbar.jsp" %>
-	<div class="center-data thumbnail" id="story-detail">
-		<h1>Story</h1>
-		<h2>Story "${story.label}".</h2>
-		<table>
+	<div class="container thumbnail">
+		<h1 class="text-center">Story</h1>
+		<h2 class="text-center">Story "${story.label}".</h2>
+		<table class="table table-striped">
 			<tr>
 		        <td>Id: </td>
 		        <td>${story.id}</td>
@@ -52,10 +52,14 @@
 		    </tr>
 		</table>
 		<div style="text-align:center;">
-		<br/>
-			<a href="<c:url value="/story/edit/${story.id }.do"/>">(edit this story)</a>
-			- 
-			<a href="<c:url value="/story/remove/${story.id }.do"/>">(remove this story)</a>
+			<div class="btn-group" role="group" style="text-align: center;">
+			  <a href="<c:url value="/story/edit/${story.id }.do"/>">
+			  	<button type="button" class="btn btn-default">Edit</button>
+			  </a>
+			  <a href="<c:url value="/story/remove/${story.id }.do"/>">
+			  	<button type="button" class="btn btn-default">Remove</button>
+			  </a>
+			</div>
 		</div>
 	</div>
 </body>

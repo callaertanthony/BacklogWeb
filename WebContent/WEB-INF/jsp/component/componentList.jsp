@@ -28,7 +28,11 @@
 			</thead>
 			<c:forEach items="${components}" var="component">
 				<tr>
-			        <td>${component.label}</td>
+			        <td>
+			        	<a href="<c:url value="view/${component.id }.do"/>">
+			        		${component.label}
+			        	</a>
+			        </td>
 			        <td>${component.owner.firstName} ${component.owner.lastName}</td>
 			        <td><a href="<c:url value="edit/${component.id }.do"/>"><span class="glyphicon glyphicon-pencil"></a></td>
 			        <td><a href="<c:url value="remove/${component.id }.do"/>"><span class="glyphicon glyphicon-trash"></span></a></td>

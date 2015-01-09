@@ -14,10 +14,10 @@
 <body>
 	<!-- Include top navbar for navigation -->
 	<%@ include file="/WEB-INF/jsp/navbar.jsp" %>
-	<div class="center-data">
-	<h1>User</h1>
-	<h2>User "${user.firstName} ${user.lastName}".</h2>
-		<table>
+	<div class="container thumbnail">
+	<h1 class="text-center">User</h1>
+	<h2 class="text-center">User "${user.firstName} ${user.lastName}".</h2>
+		<table class="table table-striped">
 			<tr>
 		        <td>Id : </td>
 		        <td>${user.id}</td>
@@ -35,6 +35,16 @@
 		        <td>${user.job}</td>
 		    </tr>
 		</table>
+		<div style="text-align:center;">
+			<div class="btn-group" role="group" style="text-align: center;">
+			  <a href="<c:url value="/story/edit/${user.id }.do"/>">
+			  	<button type="button" class="btn btn-default">Edit</button>
+			  </a>
+			  <a href="<c:url value="/story/remove/${user.id }.do"/>">
+			  	<button type="button" class="btn btn-default">Remove</button>
+			  </a>
+			</div>
+		</div>
 	</div>  
 </body>
 </html>
